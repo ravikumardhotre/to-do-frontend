@@ -1,0 +1,86 @@
+
+<div class="row container">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="form-sample" (ngSubmit)="addTask()">
+                <div class="mb-3">
+                    <label for="taskName" class="form-label">Task Name</label>
+                    <input type="text" class="form-control" autocomplete="off" name="taskName" [(ngModel)]="taskName"
+                        placeholder="Task Name">
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Select status</label>
+                    <select class="form-select" [(ngModel)]="status" name="status"
+                      >
+                      <option value="0" disabled>Select status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                        <option value="InProcess">In-Process</option>
+
+                    </select>
+                  </div>
+                <button class="btn btn-primary me-2">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"class="row-border hover">
+                        <thead>
+                           <tr>
+                               <th>#</th>
+                               <th>Task Name</th>
+                               <th>Task Status</th>
+                               <th>Action</th>
+                           </tr> 
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let task of tasks; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{task.taskName}}</td>
+                                <td>{{task.status}}</td>
+    
+                                <td>
+                                    <button style="background-color: white;border: 0px;" (click)="openLgModalAdd(lgModalAdd,task)"><img width="30" height="30" src="https://img.icons8.com/matisse/100/000000/edit.png" alt="edit"/></button>
+                                    <button style="background-color: white;border: 0px;" (click)="deleteTask(task)"><img width="40" height="40" src="https://i.postimg.cc/9FGCJSkt/icons8-trash-100-1.png" alt="delete"/></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+<ng-template #lgModalAdd let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Task</h5>
+        <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form class="form-sample" (ngSubmit)="updateTask()">
+        <div class="mb-3">
+            <label for="taskName" class="form-label">Task Name</label>
+            <input type="text" class="form-control" autocomplete="off" name="taskName" [(ngModel)]="taskName"
+            placeholder="Task Name">
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" autocomplete="off" name="status" [(ngModel)]="status"
+                placeholder="Task Status">
+        </div>
+        <button class="btn btn-primary me-2">Update</button>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    </div>
+</ng-template>  

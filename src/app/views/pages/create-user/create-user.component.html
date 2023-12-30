@@ -1,0 +1,45 @@
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" (ngSubmit)="createUser()">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" autocomplete="off" name="firstName" [(ngModel)]="firstName"
+                            placeholder="First Name" onkeydown="return /[a-z]/i.test(event.key)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" autocomplete="off" name="lastName" [(ngModel)]="lastName"
+                            placeholder="Last Name" onkeydown="return /[a-z]/i.test(event.key)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailId" class="form-label">Email address</label>
+                        <input type="email" class="form-control" placeholder="Email address" name="emailId" [(ngModel)]="emailId"   required [class.invalid-email]="inValidEmail" onkeypress="return event.charCode != 32">
+                    </div>
+                    <div class="mb-3">
+                        <label for="passwordStr" class="form-label">Password</label>
+                        <input type="password" class="form-control" autocomplete="off" name="passwordStr" [(ngModel)]="passwordStr"
+                            placeholder="Password">
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="roleSelect" class="form-label">Select Role</label>
+                        <select class="form-select" [(ngModel)] ="roleSelect" name="roleSelect">
+                          <option value="0" disabled>Select Role</option>
+                          <option value="HiringManager">Hiring Manager</option>
+                          <option value="HR-Level-1">HR Manager</option>
+                          <option value="HR-Level-2">Talent Acquisition Lead</option>
+                          <option value="Recruiter">Recruiter</option>
+                        </select>
+                      </div> -->
+                    <button class="btn btn-primary me-2" >Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="loading" *ngIf="isLoading">
+    
+  </div> -->
